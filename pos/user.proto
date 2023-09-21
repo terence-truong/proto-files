@@ -1,4 +1,7 @@
 syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
 option go_package = "./generated";
 
 package account;
@@ -9,7 +12,7 @@ message UserInfo {
   string last_name = 3;
   string email = 4;
   bool is_disabled = 5;
-  int64 created_datetime = 6;
+  google.protobuf.Timestamp created_datetime = 6;
   string password = 7;
   enum SecurityGroup {
     NO_ACCESS = 0;
