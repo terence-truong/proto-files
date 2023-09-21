@@ -1,0 +1,37 @@
+syntax = "proto3";
+option go_package = "./generated";
+
+package pos;
+
+message UserInfo {
+  string user_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  bool is_disabled = 5;
+  int64 created_datetime = 6;
+  string password = 7;
+  enum SecurityGroup {
+    NO_ACCESS = 0;
+    READ_ONLY = 1;
+    EMPLOYEE = 2;
+    SUPERVISOR = 3;
+    MANAGER = 4;
+    OWNER = 5;
+    FULL_ACCESS = 6;
+  }
+  SecurityGroup security_group = 8;
+}
+
+message CreateUserRequest {
+  UserInfo user_info = 1;
+}
+
+message CreateUserReply {
+  bool success = 1;
+  string user_id = 2;
+}
+
+service User {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserReply) {};
+}
